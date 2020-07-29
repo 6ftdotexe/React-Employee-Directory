@@ -1,29 +1,35 @@
-{/* Import all components and the api.js to access axios for the API call */ }
 import React, { Component } from "react";
+import Api from "../utils/Api";
 import Table from "./Table";
 import Navbar from "./Navbar";
-import API from "../utils/Api";
-import { createPortal } from "react-dom";
 
 class Container extends Component {
     state = {
         result: [],
         search: "",
         currentPage: ""
-    };
+    }
+
     componentDidMount() {
         this.searchEmployee()
-    };
+    }
+
     searchEmployee = () => {
-        API.getUsers()
+        Api.getUsers()
             .then(res => {
                 this.setState({ result: res.data.results })
             })
             .catch(err => console.log(err));
-    };
+    }
+
     handlePageChange = (page) => {
         this.setState({ currentPage: page })
     };
+
+    handleInputChange = (event) => {
+        this.handlePageChange(event.target.value)
+    }
+
     sortByFirst = () => {
         let firstName = this.state.result.sort(compare)
         function compare(a, b) {
@@ -33,12 +39,13 @@ class Container extends Component {
             if (nameA > nameB) {
                 comparison = 1;
             } else if (nameA < nameB) {
-                compare = -1;
+                comparison = -1;
             }
             return comparison;
         }
-        this.setState({ result: firstName });
-    };
+        this.setState({ result: firstName })
+    }
+
     sortByLast = () => {
         let lastName = this.state.result.sort(compare)
         function compare(a, b) {
@@ -48,11 +55,37 @@ class Container extends Component {
             if (nameA > nameB) {
                 comparison = 1;
             } else if (nameA < nameB) {
-                compare = -1;
+                comparison = -1;
             }
             return comparison;
         }
         this.setState({ result: lastName });
     };
 
-}
+    render() {
+        if (this.state.result) {
+            return (
+                <div className="container-sm">
+                    <Navbar
+                        handlePageChange={this.handlePageChange}
+                        currentPage={this.state.currentPage}
+                        handleInputChange={this.handleInputChange}
+                    />
+                    <Table
+                        results={this.state.result}
+                        handlePageChange={this.handlePageChange}
+                        currentPage={this.state.currentPage}
+                        sortByFirst={this.sortByFirst}
+                        sortByLast={this.sortByLast}
+                    />
+                </div>
+            )
+        }
+        else {
+            return <div>No Results</div>
+        }
+    };
+
+};
+
+export default Container;
