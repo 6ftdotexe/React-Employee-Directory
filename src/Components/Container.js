@@ -61,7 +61,7 @@ class Container extends Component {
     render() {
         if (this.state.result) {
             return (
-                <div className="container-sm">
+                <div className="container-fluid">
                     <Navbar
                         handlePageChange={this.handlePageChange}
                         currentPage={this.state.currentPage}

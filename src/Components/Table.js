@@ -3,8 +3,8 @@ import React from "react";
 function Table(props) {
     if (props.currentPage === "") {
         return (
-            <table className="header table table-striped table-dark">
-                <thead className="thead-dark">
+            <table className="header table table-striped table-hover table-primary">
+                <thead className="thead-primary">
                     <tr>
                         <th scope="col"></th>
                         <th scope="col"><a href="#name" className="alert alert-dark" onClick={() => props.sortByFirst()}>First Name</a></th>

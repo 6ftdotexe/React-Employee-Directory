@@ -5,7 +5,7 @@ export default function Navbar(props) {
         return (
             <nav className="navbar navbar-light bg-dark">
                 <a href="#home" className="alert alert-dark" onclick={() => props.handlePageChange("")}>Home</a>
-                <header className="header text-white">Employee Directory</header>
+                <header className="header text-white font-weight-bold font-size-40px">Employee Directory</header>
                 <form className="form-inline">
                     <input
                         value={props.currentPage}
@@ -18,7 +18,7 @@ export default function Navbar(props) {
     }
     else {
         return (
-            <nav className="navbar navbar-light bg-light">
+            <nav className="navbar navbar-light bg-dark">
                 <a href="#home" className="alert alert-dark justify-content-center" onClick={() => props.handlePageChange("")}>Home</a>
             </nav>
         )
