@@ -9,11 +9,9 @@ class Container extends Component {
         search: "",
         currentPage: ""
     }
-
     componentDidMount() {
         this.searchEmployee()
     }
-
     searchEmployee = () => {
         Api.getUsers()
             .then(res => {
@@ -21,7 +19,6 @@ class Container extends Component {
             })
             .catch(err => console.log(err));
     }
-
     handlePageChange = (page) => {
         this.setState({ currentPage: page })
     };
@@ -45,7 +42,6 @@ class Container extends Component {
         }
         this.setState({ result: firstName })
     }
-
     sortByLast = () => {
         let lastName = this.state.result.sort(compare)
         function compare(a, b) {
