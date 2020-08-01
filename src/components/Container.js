@@ -54,7 +54,37 @@ class Container extends Component {
             return comparison;
         }
         this.setState({ result: lastName });
-    };
+    }
+    sortByCity = () => {
+        let City = this.state.result.sort(compare)
+        function compare(a, b) {
+            const cityA = a.location.city.toUpperCase();
+            const cityB = b.location.city.toUpperCase();
+            let comparison = 0;
+            if (cityA > cityB) {
+                comparison = 1;
+            } else if (cityA < cityB) {
+                comparison = -1;
+            }
+            return comparison;
+        }
+        this.setState({ result: City })
+    }
+    sortByCountry = () => {
+        let Country = this.state.result.sort(compare)
+        function compare(a, b) {
+            const countryA = a.location.country.toUpperCase();
+            const countryB = b.location.country.toUpperCase();
+            let comparison = 0;
+            if (countryA > countryB) {
+                comparison = 1;
+            } else if (countryA < countryB) {
+                comparison = -1;
+            }
+            return comparison;
+        }
+        this.setState({ result: Country })
+    }
     render() {
         if (this.state.result) {
             return (
@@ -70,6 +100,8 @@ class Container extends Component {
                         currentPage={this.state.currentPage}
                         sortByFirst={this.sortByFirst}
                         sortByLast={this.sortByLast}
+                        sortByCity={this.sortByCity}
+                        sortByCountry={this.sortByCountry}
                     />
                 </div>
             )

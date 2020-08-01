@@ -3,14 +3,17 @@ import React from "react";
 function Table(props) {
     if (props.currentPage === "") {
         return (
-            <table className="header table table-striped table-dark">
-                <thead className="thead-dark">
+            <table className="header table table-white">
+                <thead className="thead-white">
                     <tr>
                         <th scope="col"></th>
-                        <th scope="col"><a href="#name" className="alert alert-dark" onClick={() => props.sortByFirst()}>First Name</a></th>
-                        <th scope="col"><a href="#name" className="alert alert-dark" onClick={() => props.sortByLast()}>Last Name</a></th>
+                        <th scope="col"><a href="#name" className="alert alert-white" onClick={() => props.sortByFirst()}>First Name</a></th>
+                        <th scope="col"><a href="#name" className="alert alert-white" onClick={() => props.sortByLast()}>Last Name</a></th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th scope="col"><a href="#name" className="alert alert-white" onClick={() => props.sortByCity()}>City</a></th>
+                        <th scope="col"><a href="#name" className="alert alert-white" onClick={() => props.sortByCountry()}>Country</a></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +29,9 @@ function Table(props) {
                                 <td>{result.name.last}</td>
                                 <td>{result.cell}</td>
                                 <td>{result.email}</td>
+                                <td>{result.location.street.number} {result.location.street.name}</td>
+                                <td>{result.location.city}</td>
+                                <td>{result.location.country}</td>
                             </tr>
                         ))
                     }
@@ -37,14 +43,17 @@ function Table(props) {
             return (result.name.first + " " + result.name.last).substring(0, props.currentPage.length).toLowerCase() === props.currentPage.toLowerCase();
         })
         return (
-            <table className="header table table-striped table-dark">
-                <thead className="thead-dark">
+            <table className="header table table-white">
+                <thead className="thead-white">
                     <tr>
                         <th scope="col"></th>
-                        <th scope="col"><a href="#name" className="alert alert-dark" onClick={() => props.sortByFirst()}>First Name</a></th>
-                        <th scope="col"><a href="#name" className="alert alert-dark" onClick={() => props.sortByLast()}>Last Name</a></th>
+                        <th scope="col"><a href="#name" className="alert alert-white" onClick={() => props.sortByFirst()}>First Name</a></th>
+                        <th scope="col"><a href="#name" className="alert alert-white" onClick={() => props.sortByLast()}>Last Name</a></th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th scope="col"><a href="#name" className="alert alert-white" onClick={() => props.sortByCity()}>City</a></th>
+                        <th scope="col"><a href="#name" className="alert alert-white" onClick={() => props.sortByCountry()}>Country</a></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,6 +69,9 @@ function Table(props) {
                                 <td>{result.name.last}</td>
                                 <td>{result.cell}</td>
                                 <td>{result.email}</td>
+                                <td>{result.location.street.number} {result.location.street.name}</td>
+                                <td>{result.location.city}</td>
+                                <td>{result.location.country}</td>
                             </tr>
                         ))
                     }
@@ -76,11 +88,13 @@ function Table(props) {
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <p className="card-text">First Name: {props.currentPage.result.name.first}</p>
-                                <p className="card-text">Last Name: {props.currentPage.result.name.last}</p>
+                                <p className="card-text">Username: {props.currentPage.result.login.username}</p>
+                                <p className="card-text">Name: {props.currentPage.result.name.first} {props.currentPage.result.name.last}</p>
                                 <p className="card-text">Phone Number: {props.currentPage.result.cell}</p>
                                 <p className="card-text">Email: {props.currentPage.result.email}</p>
-                                <p className="card-text">Location: {props.currentPage.result.location.city}</p>
+                                <p className="card-text">Address: {props.currentPage.result.location.street.number} {props.currentPage.result.location.street.name}</p>
+                                <p className="card-text">City: {props.currentPage.result.location.city}</p>
+                                <p className="card-text">Country: {props.currentPage.result.location.country}</p>
                             </div>
                         </div>
                     </div>
